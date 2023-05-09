@@ -7,10 +7,13 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-ROOT = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/yolov5"
+BASE = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
+ROOT = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/yolov5/"
+#ROOT = "G:\내 드라이브\Capstone_Yolov5_Test\yolov5\yolov5"
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(ROOT)
+BASE = Path(BASE)
 
 from models.common import DetectMultiBackend
 from utils.augmentations import classify_transforms
@@ -85,7 +88,12 @@ def run_yolov5_scene(
 
     # Load model
     device = select_device(device)
-    model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
+    #model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
+    #model = torch.hub.load('path/to/yolov5', 'custom', path='path/to/best.pt', source='local')
+    model = torch.hub.load( ROOT, 
+                           'custom', 
+                           path = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/checkpoint/yolov5_scene_best.pt",  
+                           source = "local" )
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 

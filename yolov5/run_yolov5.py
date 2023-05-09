@@ -54,7 +54,7 @@ def run_yolov5(images):
     """
     print("==========START YOLOV5==========\n")
 
-    re_download = True
+    re_download = False
 
     base_path = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
     yolov5_path = base_path + "yolov5/"
@@ -93,5 +93,6 @@ def run_yolov5(images):
     )
 
     print_images_dict(images)
-
     print("==========END YOLOV5==========\n")
+
+    return images
