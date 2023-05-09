@@ -7,13 +7,15 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-BASE = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
-ROOT = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/yolov5/"
-#ROOT = "G:\내 드라이브\Capstone_Yolov5_Test\yolov5\yolov5"
-if str(ROOT) not in sys.path:
-    sys.path.append(str(ROOT))  # add ROOT to PATH
-ROOT = Path(ROOT)
-BASE = Path(BASE)
+YOLO_PATH= "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
+YOLO_CLONE_PATH = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/yolov5/"
+
+#YOLO_CLONE_PATH = "G:\내 드라이브\Capstone_Yolov5_Test\yolov5\yolov5"
+if str(YOLO_CLONE_PATH) not in sys.path:
+    sys.path.append(str(YOLO_CLONE_PATH))  # add YOLO_CLONE_PATH to PATH
+    
+YOLO_PATH = Path(YOLO_PATH)
+YOLO_CLONE_PATH = Path(YOLO_CLONE_PATH)
 
 from models.common import DetectMultiBackend
 from utils.augmentations import classify_transforms
@@ -32,11 +34,11 @@ def run_yolov5_scene(
         yolov5_path,
         classification_threshold=0.4,  # probability threshold
 
-        weights=ROOT / 'yolov5s-cls.pt',  # model.pt path(s)
-        source=ROOT / 'data/images',  # file/dir/URL/glob/screen/0(webcam)
+        weights=YOLO_CLONE_PATH / 'yolov5s-cls.pt',  # model.pt path(s)
+        source=YOLO_CLONE_PATH / 'data/images',  # file/dir/URL/glob/screen/0(webcam)
         nosave=False,  # do not save images/videos
 
-        data=ROOT / 'data/coco128.yaml',  # dataset.yaml path
+        data=YOLO_CLONE_PATH / 'data/coco128.yaml',  # dataset.yaml path
         imgsz=(224, 224),  # inference size (height, width)
         device='',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
         view_img=False,  # show results
@@ -44,7 +46,7 @@ def run_yolov5_scene(
         augment=False,  # augmented inference
         visualize=False,  # visualize features
         update=False,  # update all models
-        project=ROOT / 'runs/predict-cls',  # save results to project/name
+        project=YOLO_CLONE_PATH / 'runs/predict-cls',  # save results to project/name
         name='exp',  # save results to project/name
         exist_ok=False,  # existing project/name ok, do not increment
         half=False,  # use FP16 half-precision inference
@@ -90,9 +92,9 @@ def run_yolov5_scene(
     device = select_device(device)
     #model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
     #model = torch.hub.load('path/to/yolov5', 'custom', path='path/to/best.pt', source='local')
-    model = torch.hub.load( ROOT, 
-                           'custom', 
-                           path = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/checkpoint/yolov5_scene_best.pt",  
+    model = torch.hub.load( YOLO_CLONE_PATH, 
+                           "custom", 
+                           path = os.path.join(YOLO_PATH, "checkpoint/yolov5_scene_best.pt"),  
                            source = "local" )
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
