@@ -2,12 +2,14 @@
 import urllib.request
 import os
 import shutil
+
 # yolo 기본
 #import utils
 #display = utils.notebook_init()  # checks
+
 # yolo Classification, ObjectDetection
-from yolov5.yolov5.yolov5_scene_classification import run_yolov5_scene
-from yolov5.yolov5.yolov5_object_detection import run_yolov5_object
+from yolov5_scene_classification import run_yolov5_scene
+from yolov5_object_detection import run_yolov5_object
 
 def download_images(images, images_folder_path, re_download):
   # 폴더 생성
@@ -55,10 +57,11 @@ def run_yolov5(images):
     print("==========START YOLOV5==========\n")
 
     re_download = False
+    file_path = Path(__file__).resolve()
+    base_path = file_path.parents[0]
 
-    base_path = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
-    yolov5_path = base_path + "yolov5/"
-    images_folder_path = base_path + "images/"
+    yolov5_path = os.path.join(base_path, "yolov5/")
+    images_folder_path = os.path.join(base_path, "images/")
 
     # [STEP 0. url로 이미지 다운받아 images 폴더에 저장]
     print("\n\n")
@@ -72,10 +75,11 @@ def run_yolov5(images):
         images,
         base_path,
         yolov5_path,
-        classification_threshold=0.4,
-        weights="yolov5/checkpoint/yolov5_scene_best.pt",  # model.pt path(s)
-        source="yolov5/images/*.jpg",  # file/dir/URL/glob/screen/0(webcam)
-        nosave=True,  # do not save images/videos
+        classification_threshold=0.5,
+        weights="checkpoint/yolov5_scene_best.pt",
+        source="images/*.jpg",
+        nosave=True,
+        device=0
     )
 
     print_images_dict(images)
@@ -87,9 +91,10 @@ def run_yolov5(images):
         images,
         base_path,
         yolov5_path,
-        weights="yolov5/checkpoint/yolov5_object_best.pt",  # model.pt path(s)
-        source="yolov5/images/*.jpg",  # file/dir/URL/glob/screen/0(webcam)
-        nosave=True,  # do not save images/videos
+        weights="checkpoint/yolov5_object_best.pt",
+        source="images/*.jpg",
+        nosave=True,
+        device=0
     )
 
     print_images_dict(images)

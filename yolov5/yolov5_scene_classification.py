@@ -7,13 +7,13 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-YOLO_PATH= "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/"
-YOLO_CLONE_PATH = "/content/drive/MyDrive/Capstone_Yolov5_Test/yolov5/yolov5/"
+FILE = Path(__file__).resolve()
+YOLO_PATH = FILE.parents[0]
+YOLO_CLONE_PATH = os.path.join(YOLO_PATH, "yolov5/")
 
-#YOLO_CLONE_PATH = "G:\내 드라이브\Capstone_Yolov5_Test\yolov5\yolov5"
 if str(YOLO_CLONE_PATH) not in sys.path:
     sys.path.append(str(YOLO_CLONE_PATH))  # add YOLO_CLONE_PATH to PATH
-    
+
 YOLO_PATH = Path(YOLO_PATH)
 YOLO_CLONE_PATH = Path(YOLO_CLONE_PATH)
 
