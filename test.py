@@ -177,6 +177,6 @@ images = [
     }
 ]
 
-from yolov5.run_yolov5 import *
+from yolov5.main import *
 
 images = run_yolov5(images)

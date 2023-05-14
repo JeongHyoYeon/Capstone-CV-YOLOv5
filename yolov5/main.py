@@ -4,32 +4,44 @@ import os
 import shutil
 
 # yolo 기본
-#import utils
-#display = utils.notebook_init()  # checks
+# import utils
+# display = utils.notebook_init()  # checks
 
 # yolo Classification, ObjectDetection
+import sys
+from pathlib import Path
+
+FILE = Path(__file__).resolve()
+BASE_PATH = FILE.parents[0]
+
+if str(BASE_PATH) not in sys.path:
+    sys.path.append(str(BASE_PATH))  # add BASE_PATH to PATH
+
 from yolov5_scene_classification import run_yolov5_scene
 from yolov5_object_detection import run_yolov5_object
 
-def download_images(images, images_folder_path, re_download):
-  # 폴더 생성
-  if os.path.exists(images_folder_path):
-    if re_download:
-      shutil.rmtree(images_folder_path)
-      os.mkdir(images_folder_path)
-  else :
-    os.mkdir(images_folder_path)
 
-  # 이미지 저장
-  if re_download:
-    for idx, image in enumerate(images):
-      urllib.request.urlretrieve(image["url"], images_folder_path + str(image["id"]) + ".jpg")
+def download_images(images, images_folder_path, re_download):
+    # 폴더 생성
+    if os.path.exists(images_folder_path):
+        if re_download:
+            shutil.rmtree(images_folder_path)
+            os.mkdir(images_folder_path)
+    else:
+        os.mkdir(images_folder_path)
+
+    # 이미지 저장
+    if re_download:
+        for idx, image in enumerate(images):
+            urllib.request.urlretrieve(image["url"], images_folder_path + str(image["id"]) + ".jpg")
+
 
 def print_images_dict(images):
     for i, img in enumerate(images):
         print("idx = ", i)
         print(img)
         print(" ")
+
 
 def run_yolov5(images):
     """
@@ -57,11 +69,9 @@ def run_yolov5(images):
     print("==========START YOLOV5==========\n")
 
     re_download = False
-    file_path = Path(__file__).resolve()
-    base_path = file_path.parents[0]
 
-    yolov5_path = os.path.join(base_path, "yolov5/")
-    images_folder_path = os.path.join(base_path, "images/")
+    yolov5_path = os.path.join(BASE_PATH, "yolov5/")
+    images_folder_path = os.path.join(BASE_PATH, "images/")
 
     # [STEP 0. url로 이미지 다운받아 images 폴더에 저장]
     print("\n\n")
@@ -73,11 +83,11 @@ def run_yolov5(images):
     print("Step1. scene classification\n")
     images = run_yolov5_scene(
         images,
-        base_path,
+        BASE_PATH,
         yolov5_path,
         classification_threshold=0.5,
-        weights="checkpoint/yolov5_scene_best.pt",
-        source="images/*.jpg",
+        weights=os.path.join(BASE_PATH, "checkpoint/yolov5_scene_best.pt"),
+        source=os.path.join(BASE_PATH, "images/*.jpg"),
         nosave=True,
         device=0
     )
@@ -89,10 +99,10 @@ def run_yolov5(images):
     print("Step2. object detection\n")
     images = run_yolov5_object(
         images,
-        base_path,
+        BASE_PATH,
         yolov5_path,
-        weights="checkpoint/yolov5_object_best.pt",
-        source="images/*.jpg",
+        weights=os.path.join(BASE_PATH, "checkpoint/yolov5_object_100epoch_best.pt"),
+        source=os.path.join(BASE_PATH, "images/*.jpg"),
         nosave=True,
         device=0
     )
