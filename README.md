@@ -19,8 +19,9 @@
   <h1>
     [Yolov5] Scene Classification
   </h1>
+  <img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/7ece8b56-71fd-44ba-851a-5603234966ad">
 </div>
-<img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/7ece8b56-71fd-44ba-851a-5603234966ad">
+
 <p>
   <b>dataset</b> : <a href="https://universe.roboflow.com/m3-ytsk5/m3finalclass"> link </a>
 </p>
@@ -43,8 +44,9 @@
   <h1>
     [Yolov5] Object Detection
   </h1>
+  <img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/2e6e5eab-9983-4f2a-a25b-0028d530b51d">
 </div>
-<img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/2e6e5eab-9983-4f2a-a25b-0028d530b51d">
+
 <p>
   객체tag를 붙이기 위해
   80개의 class로 구성된 coco dataset으로 pre-trained된 
@@ -59,14 +61,16 @@
   <h1>
     최종 결과
   </h1>
+  <img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/bb565feb-029a-4cce-9bef-d490d7c29d8a">
 </div>
-<img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/bb565feb-029a-4cce-9bef-d490d7c29d8a">
-
-이렇게 scene classification과 object detection을 수행해 최대 88개의 폴더를 생성하게 됩니다.
-그 결과로 생성된 폴더 내부를 살펴보면, 식탁 폴더엔 식탁 위 사진들이, 컵 폴더엔 컵이 들어간 사진들이, 비행기 폴더엔 공항에서 찍은 사진이 잘 들어간 것을 확인할 수 있습니다.
-
-이러한 객체 인식 AI는 사진 100장에 1분 미만의 시간이 소요됩니다. (Tesla T4 GPU 이용)
-
+<p>
+  이렇게 scene classification과 object detection을 수행해 최대 88개의 폴더를 생성하게 됩니다.
+  그 결과로 생성된 폴더 내부를 살펴보면, 식탁 폴더엔 식탁 위 사진들이, 컵 폴더엔 컵이 들어간 사진들이, 비행기 폴더엔 공항에서 찍은 사진이 
+  잘 들어간 것을 확인할 수 있습니다.
+</p>
+<p>
+  이러한 객체 인식 AI는 사진 100장에 1분 미만의 시간이 소요됩니다. (Tesla T4 GPU 이용)
+</p>
 <br>
 <div align="center">
   <h1>
@@ -106,13 +110,13 @@ Returns:
   <h1>
     참고자료
   </h1>
+  <p> <b>YOLOv5</b> : <a href="https://github.com/ultralytics/yolov5">github</a> </p>
 </div>
-<p> <b>YOLOv5</b> : <a href="https://github.com/ultralytics/yolov5">github</a> </p>
 
 <br>
 <div align="center">
   <h1>
     기술블로그
   </h1>
+  <p> <b>기술블로그</b> :  <a href="https://deardus00.tistory.com/22">[2023-1 졸업프로젝트] FaceRecognition & YOLOv5</a> </p>
 </div>
-<p> <b>기술블로그</b> :  <a href="https://deardus00.tistory.com/22">[2023-1 졸업프로젝트] FaceRecognition & YOLOv5</a> </p>
