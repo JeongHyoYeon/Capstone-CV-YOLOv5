@@ -54,6 +54,12 @@
   정확도를 나타내는 mean average precision인 mAP 가 44.5로 좋은 성능을 보여줍니다.
 </p>
 
+
+<div align="center">
+  <h1>
+    최종 결과
+  </h1>
+</div>
 <img src="https://github.com/JeongHyoYeon/Capstone-CV-YOLOv5/assets/90602936/bb565feb-029a-4cce-9bef-d490d7c29d8a">
 
 이렇게 scene classification과 object detection을 수행해 최대 88개의 폴더를 생성하게 됩니다.
